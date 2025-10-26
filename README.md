@@ -1,4 +1,4 @@
-# segnale
+# Segnale
 
 Segnale uses AI to aggregate redundant event coverage from automated emails and newsletters, surfacing actionable items whilst leaving human correspondence untouched.
 
