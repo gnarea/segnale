@@ -45,6 +45,10 @@ kotlin {
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+            implementation(libs.kotest.assertions)
+            implementation(libs.mockk)
+            implementation(libs.turbine)
+            implementation(libs.kotlinx.coroutines.test)
         }
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
@@ -82,6 +86,13 @@ android {
 
 dependencies {
     debugImplementation(compose.uiTooling)
+
+    // Compose UI Testing (Android)
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
+
+    // Compose-specific lint checks
+    lintChecks(libs.compose.lints)
 }
 
 compose.desktop {
