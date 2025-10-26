@@ -1,6 +1,6 @@
 # segnale
 
-Segnale is a signal extraction application that processes automated emails and newsletters through AI-powered classification and multi-source event aggregation to maximize signal-to-noise ratio while leaving human correspondence untouched
+Segnale uses AI to aggregate redundant event coverage from automated emails and newsletters, surfacing actionable items whilst leaving human correspondence untouched.
 
 This is a Kotlin Multiplatform project targeting Android, iOS, Desktop (JVM).
 
