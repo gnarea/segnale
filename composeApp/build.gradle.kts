@@ -46,9 +46,17 @@ kotlin {
         commonTest.dependencies {
             implementation(libs.kotlin.test)
             implementation(libs.kotest.assertions)
-            implementation(libs.mockk)
             implementation(libs.turbine)
             implementation(libs.kotlinx.coroutines.test)
+        }
+
+        // MockK only supports JVM/Android, not iOS/Native
+        jvmTest.dependencies {
+            implementation(libs.mockk)
+        }
+
+        androidInstrumentedTest.dependencies {
+            implementation(libs.mockk)
         }
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)

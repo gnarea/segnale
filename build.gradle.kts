@@ -14,7 +14,14 @@ detekt {
     buildUponDefaultConfig = true
     allRules = false
     config.setFrom("$projectDir/detekt.yml")
+    baseline = file("$projectDir/detekt-baseline.xml")
     basePath = projectDir.absolutePath
+    source.setFrom(
+        "composeApp/src/commonMain/kotlin",
+        "composeApp/src/androidMain/kotlin",
+        "composeApp/src/iosMain/kotlin",
+        "composeApp/src/jvmMain/kotlin"
+    )
 }
 
 dependencies {
@@ -28,5 +35,12 @@ tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
         txt.required.set(false)
         sarif.required.set(true)
         md.required.set(false)
+    }
+}
+
+// Make subproject check tasks depend on root detekt
+subprojects {
+    tasks.matching { it.name == "check" }.configureEach {
+        dependsOn(rootProject.tasks.named("detekt"))
     }
 }
