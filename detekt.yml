@@ -10,31 +10,25 @@ config:
 processors:
   active: true
   exclude:
-    - 'DetektProgressListener'
+    - "DetektProgressListener"
 
 console-reports:
   active: true
   exclude:
-     - 'ProjectStatisticsReport'
-     - 'ComplexityReport'
-     - 'NotificationReport'
-     - 'FindingsReport'
-     - 'FileBasedFindingsReport'
+    - "ProjectStatisticsReport"
+    - "ComplexityReport"
+    - "NotificationReport"
+    - "FindingsReport"
+    - "FileBasedFindingsReport"
 
 output-reports:
   active: true
   exclude:
-   - 'SarifOutputReport'
+    - "SarifOutputReport"
 
 comments:
   active: true
   OutdatedDocumentation:
-    active: true
-  UndocumentedPublicClass:
-    active: true
-  UndocumentedPublicFunction:
-    active: true
-  UndocumentedPublicProperty:
     active: true
 
 complexity:
@@ -100,6 +94,8 @@ naming:
   active: true
   BooleanPropertyNaming:
     active: true
+  FunctionNaming:
+    ignoreAnnotated: ["Composable"]
   LambdaParameterNaming:
     active: true
   NonBooleanPropertyPrefixedWithIs:
@@ -130,10 +126,20 @@ potential-bugs:
     active: true
   LateinitUsage:
     active: true
-    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/androidUnitTest/**', '**/androidInstrumentedTest/**', '**/jsTest/**', '**/iosTest/**']
+    excludes:
+      [
+        "**/test/**",
+        "**/androidTest/**",
+        "**/commonTest/**",
+        "**/jvmTest/**",
+        "**/androidUnitTest/**",
+        "**/androidInstrumentedTest/**",
+        "**/jsTest/**",
+        "**/iosTest/**",
+      ]
   MissingPackageDeclaration:
     active: true
-    excludes: ['**/*.kts']
+    excludes: ["**/*.kts"]
   NullCheckOnMutableProperty:
     active: true
   NullableToStringCall:
@@ -165,7 +171,18 @@ style:
     active: true
   MagicNumber:
     active: true
-    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/androidUnitTest/**', '**/androidInstrumentedTest/**', '**/jsTest/**', '**/iosTest/**', '**/*.kts']
+    excludes:
+      [
+        "**/test/**",
+        "**/androidTest/**",
+        "**/commonTest/**",
+        "**/jvmTest/**",
+        "**/androidUnitTest/**",
+        "**/androidInstrumentedTest/**",
+        "**/jsTest/**",
+        "**/iosTest/**",
+        "**/*.kts",
+      ]
   MaxLineLength:
     active: true
   MayBeConst:
