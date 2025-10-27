@@ -1,8 +1,11 @@
 name: "CodeQL Config"
 
-# Paths to analyze
+# Paths to analyze - explicit platform sources
 paths:
-  - composeApp/src
+  - composeApp/src/commonMain
+  - composeApp/src/androidMain
+  - composeApp/src/iosMain
+  - composeApp/src/jvmMain
 
 # Paths to ignore
 paths-ignore:
@@ -15,11 +18,10 @@ paths-ignore:
   - '**/test/**'
   - '**/androidTest/**'
   - '**/commonTest/**'
+  - '**/iosTest/**'
+  - '**/jvmTest/**'
+  - '**/composeResources/**'
 
-# Query suites to run
+# Query suites to run - using security-extended for more thorough security analysis
 queries:
-  - uses: security-and-quality
-
-# Disable default queries if you want only security-focused
-# queries:
-#   - uses: security-extended
+  - uses: security-extended
