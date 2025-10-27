@@ -1,0 +1,86 @@
+language: "en-GB"
+tone_instructions: "Focus on Clean Architecture principles, Kotlin idioms, and KMP best practices. Be precise and technical."
+
+reviews:
+  profile: "assertive"
+  collapse_walkthrough: true
+  request_changes_workflow: true
+  poem: false
+
+  auto_review:
+    base_branches:
+      - main
+
+  path_instructions:
+    - path: "composeApp/src/commonMain/**"
+      instructions: |
+        This is platform-agnostic code. Ensure no platform-specific dependencies.
+        Follow Clean Architecture - domain layer should be pure business logic.
+
+    - path: "composeApp/src/androidMain/**"
+      instructions: |
+        Android-specific implementations. Check for proper use of Android APIs,
+        lifecycle awareness, and Material Design compliance.
+
+    - path: "composeApp/src/iosMain/**"
+      instructions: |
+        iOS-specific implementations. Verify compatibility with iOS platform
+        conventions and proper integration with Swift/Objective-C interop.
+
+    - path: "composeApp/src/jvmMain/**"
+      instructions: |
+        Desktop/JVM-specific implementations. Ensure proper desktop UI patterns
+        and JVM-specific optimizations.
+
+    - path: "*.md"
+      instructions: |
+        Documentation should be clear, accurate, and aligned with current
+        implementation. Check for outdated information.
+
+knowledge_base:
+  code_guidelines:
+    scope: "local"
+    file_patterns:
+      - "*.md"
+      - "IDEA.md"
+      - "arch.md"
+      - "README.md"
+      - ".cursorrules"
+      - "docs/**/*.md"
+
+pre_merge_checks:
+  docstrings:
+    mode: "error"
+
+  title:
+    mode: "error"
+
+  description:
+    mode: "error"
+    min_length: 50
+
+  issue_assessment:
+    mode: "error"
+
+finishing_touches:
+  docstrings:
+    enabled: false
+
+  unit_tests:
+    enabled: false
+
+tools:
+  gitleaks:
+    enabled: false
+
+  semgrep:
+    enabled: false
+
+  checkov:
+    enabled: false
+
+ignore_title_keywords:
+  - "WIP"
+  - "DO NOT REVIEW"
+  - "[skip ci]"
+  - "[no review]"
