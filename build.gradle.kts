@@ -14,7 +14,6 @@ detekt {
     buildUponDefaultConfig = true
     allRules = false
     config.setFrom("$projectDir/detekt.yml")
-    baseline = file("$projectDir/detekt-baseline.xml")
     basePath = projectDir.absolutePath
     source.setFrom(
         "composeApp/src/commonMain/kotlin",
