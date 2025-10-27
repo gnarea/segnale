@@ -4,20 +4,6 @@ Segnale uses AI to aggregate redundant event coverage from automated emails and 
 
 This is a Kotlin Multiplatform project targeting Android, iOS, Desktop (JVM).
 
-## Code Quality & CI/CD
-
-The project uses modern static analysis and automated testing:
-
-- **Static Analysis**: Detekt (Kotlin linting), ktlint (code formatting), Compose Lints (Compose best practices)
-- **Security Scanning**: CodeQL for vulnerability detection
-- **Testing**: Unit tests (Kotest, Turbine, MockK), Android instrumentation tests on emulators
-- **CI/CD**: GitHub Actions with parallel jobs for fast feedback
-
-Run all checks locally before committing:
-```shell
-./gradlew check
-```
-
 * [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
   It contains several subfolders:
   - [commonMain](./composeApp/src/commonMain/kotlin) is for code that’s common for all targets.
