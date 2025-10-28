@@ -2,6 +2,7 @@ language: "en-GB"
 tone_instructions: "Focus on Clean Architecture principles, Kotlin idioms, and KMP best practices. Be precise and technical."
 
 reviews:
+  review_status: false
   profile: "assertive"
   collapse_walkthrough: true
   request_changes_workflow: true
