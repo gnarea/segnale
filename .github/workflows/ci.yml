@@ -89,7 +89,7 @@ jobs:
         if: always()
         uses: github/codeql-action/upload-sarif@v4
         with:
-          sarif_file: "**/build/reports/detekt/detekt.sarif"
+          sarif_file: build/reports/detekt/detekt.sarif
           category: detekt
 
       - name: Initialize CodeQL
