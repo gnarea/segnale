@@ -23,8 +23,6 @@ console-reports:
 
 output-reports:
   active: true
-  exclude:
-    - "SarifOutputReport"
 
 comments:
   active: true
