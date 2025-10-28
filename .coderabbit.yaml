@@ -37,50 +37,34 @@ reviews:
         Documentation should be clear, accurate, and aligned with current
         implementation. Check for outdated information.
 
+  pre_merge_checks:
+    docstrings:
+      mode: "off"
+
+    title:
+      mode: "error"
+      requirements: "Title should be concise, descriptive, free of typos, and ideally under 60 characters."
+
+    description:
+      mode: "error"
+
+    issue_assessment:
+      mode: "error"
+
+  finishing_touches:
+    docstrings:
+      enabled: false
+
+    unit_tests:
+      enabled: false
+
 knowledge_base:
   code_guidelines:
-    scope: "local"
-    file_patterns:
+    enabled: true
+    filePatterns:
       - "*.md"
       - "IDEA.md"
       - "arch.md"
       - "README.md"
       - ".cursorrules"
       - "docs/**/*.md"
-
-pre_merge_checks:
-  docstrings:
-    mode: "error"
-
-  title:
-    mode: "error"
-
-  description:
-    mode: "error"
-    min_length: 50
-
-  issue_assessment:
-    mode: "error"
-
-finishing_touches:
-  docstrings:
-    enabled: false
-
-  unit_tests:
-    enabled: false
-
-tools:
-  gitleaks:
-    enabled: false
-
-  semgrep:
-    enabled: false
-
-  checkov:
-    enabled: false
-
-ignore_title_keywords:
-  - "WIP"
-  - "DO NOT REVIEW"
-  - "[skip ci]"
-  - "[no review]"
