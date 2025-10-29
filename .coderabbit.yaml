@@ -67,5 +67,3 @@ knowledge_base:
       - "IDEA.md"
       - "arch.md"
       - "README.md"
-      - ".cursorrules"
-      - "docs/**/*.md"
