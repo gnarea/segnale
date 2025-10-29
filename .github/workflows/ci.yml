@@ -107,6 +107,7 @@ jobs:
           category: kotlin-security
 
   android-test:
+    if: false  # Re-enable when instrumentation tests are added
     name: Android Instrumentation Tests
     runs-on: ubuntu-latest
     needs: build
