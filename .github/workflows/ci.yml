@@ -6,8 +6,8 @@ on:
   pull_request:
 
 jobs:
-  build-and-analyze:
-    name: Build, test, and analyze
+  build-and-analyse:
+    name: Build, test, and analyse
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
@@ -83,7 +83,7 @@ jobs:
   android-test:
     name: Android Instrumentation Tests
     runs-on: ubuntu-latest
-    needs: build-and-analyze
+    needs: build-and-analyse
     timeout-minutes: 10
     strategy:
       fail-fast: false
