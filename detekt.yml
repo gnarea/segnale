@@ -55,7 +55,6 @@ complexity:
     active: true
   StringLiteralDuplication:
     active: true
-    excludeStringsWithLessThan5Characters: false
   TooManyFunctions:
     active: true
 
