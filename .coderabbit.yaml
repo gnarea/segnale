@@ -3,6 +3,7 @@ tone_instructions: "Focus on Clean Architecture principles, Kotlin idioms, and K
 
 reviews:
   review_status: false
+  high_level_summary: false
   profile: "assertive"
   collapse_walkthrough: true
   request_changes_workflow: true
