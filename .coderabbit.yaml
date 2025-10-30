@@ -60,6 +60,11 @@ reviews:
     unit_tests:
       enabled: false
 
+  tools:
+    github-checks:
+      enabled: true
+      timeout_ms: 600000
+
 knowledge_base:
   code_guidelines:
     enabled: true
