@@ -64,7 +64,6 @@ knowledge_base:
   code_guidelines:
     enabled: true
     filePatterns:
-      - "*.md"
       - "IDEA.md"
       - "arch.md"
       - "README.md"
