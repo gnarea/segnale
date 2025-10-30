@@ -9,7 +9,7 @@ jobs:
   build-and-analyse:
     name: Build, test, and analyse
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     permissions:
       contents: read
       security-events: write
