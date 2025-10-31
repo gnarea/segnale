@@ -45,6 +45,18 @@ kotlin {
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+            implementation(libs.kotest.assertions)
+            implementation(libs.turbine)
+            implementation(libs.kotlinx.coroutines.test)
+        }
+
+        // MockK only supports JVM/Android, not iOS/Native
+        jvmTest.dependencies {
+            implementation(libs.mockk)
+        }
+
+        androidInstrumentedTest.dependencies {
+            implementation(libs.mockk)
         }
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
@@ -67,6 +79,8 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "/META-INF/LICENSE.md"
+            excludes += "/META-INF/LICENSE-notice.md"
         }
     }
     buildTypes {
@@ -82,6 +96,13 @@ android {
 
 dependencies {
     debugImplementation(compose.uiTooling)
+
+    // Compose UI Testing (Android)
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
+
+    // Compose-specific lint checks
+    lintChecks(libs.compose.lints)
 }
 
 compose.desktop {

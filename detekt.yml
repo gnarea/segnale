@@ -1,0 +1,374 @@
+build:
+  maxIssues: 0
+  excludeCorrectable: false
+
+config:
+  validation: true
+  warningsAsErrors: true
+  checkExhaustiveness: false
+
+processors:
+  active: true
+  exclude:
+    - "DetektProgressListener"
+
+console-reports:
+  active: true
+  exclude:
+    - "ProjectStatisticsReport"
+    - "ComplexityReport"
+    - "NotificationReport"
+    - "FindingsReport"
+    - "FileBasedFindingsReport"
+
+output-reports:
+  active: true
+
+comments:
+  active: true
+  OutdatedDocumentation:
+    active: true
+
+complexity:
+  active: true
+  CognitiveComplexMethod:
+    active: true
+  ComplexCondition:
+    active: true
+  ComplexInterface:
+    active: true
+  CyclomaticComplexMethod:
+    active: true
+  LabeledExpression:
+    active: true
+  LargeClass:
+    active: true
+  LongMethod:
+    active: true
+  LongParameterList:
+    active: true
+  NamedArguments:
+    active: true
+  NestedBlockDepth:
+    active: true
+  NestedScopeFunctions:
+    active: true
+  StringLiteralDuplication:
+    active: true
+  TooManyFunctions:
+    active: true
+
+coroutines:
+  active: true
+  GlobalCoroutineUsage:
+    active: true
+  InjectDispatcher:
+    active: true
+  RedundantSuspendModifier:
+    active: true
+  SleepInsteadOfDelay:
+    active: true
+  SuspendFunSwallowedCancellation:
+    active: true
+  SuspendFunWithCoroutineScopeReceiver:
+    active: true
+  SuspendFunWithFlowReturnType:
+    active: true
+
+empty-blocks:
+  active: true
+
+exceptions:
+  active: true
+  NotImplementedDeclaration:
+    active: true
+  ObjectExtendsThrowable:
+    active: true
+  ThrowingExceptionInMain:
+    active: true
+
+naming:
+  active: true
+  BooleanPropertyNaming:
+    active: true
+  FunctionNaming:
+    ignoreAnnotated: ["Composable"]
+  LambdaParameterNaming:
+    active: true
+  NonBooleanPropertyPrefixedWithIs:
+    active: true
+
+performance:
+  active: true
+  CouldBeSequence:
+    active: true
+  UnnecessaryPartOfBinaryExpression:
+    active: true
+
+potential-bugs:
+  active: true
+  CastNullableToNonNullableType:
+    active: true
+  CastToNullableType:
+    active: true
+  Deprecation:
+    active: true
+  DontDowncastCollectionTypes:
+    active: true
+  ElseCaseInsteadOfExhaustiveWhen:
+    active: true
+  ExitOutsideMain:
+    active: true
+  ImplicitUnitReturnType:
+    active: true
+  LateinitUsage:
+    active: true
+    excludes:
+      [
+        "**/test/**",
+        "**/androidTest/**",
+        "**/commonTest/**",
+        "**/jvmTest/**",
+        "**/androidUnitTest/**",
+        "**/androidInstrumentedTest/**",
+        "**/jsTest/**",
+        "**/iosTest/**",
+      ]
+  MissingPackageDeclaration:
+    active: true
+    excludes: ["**/*.kts"]
+  NullCheckOnMutableProperty:
+    active: true
+  NullableToStringCall:
+    active: true
+  PropertyUsedBeforeDeclaration:
+    active: true
+  UnconditionalJumpStatementInLoop:
+    active: true
+  UnnecessaryNotNullCheck:
+    active: true
+
+style:
+  active: true
+  CollapsibleIfStatements:
+    active: true
+  DataClassContainsFunctions:
+    active: true
+  DataClassShouldBeImmutable:
+    active: true
+  DoubleNegativeLambda:
+    active: true
+  ExplicitCollectionElementAccessMethod:
+    active: true
+  ForbiddenComment:
+    active: true
+  ForbiddenMethodCall:
+    active: true
+  LoopWithTooManyJumpStatements:
+    active: true
+  MagicNumber:
+    active: true
+    excludes:
+      [
+        "**/test/**",
+        "**/androidTest/**",
+        "**/commonTest/**",
+        "**/jvmTest/**",
+        "**/androidUnitTest/**",
+        "**/androidInstrumentedTest/**",
+        "**/jsTest/**",
+        "**/iosTest/**",
+        "**/*.kts",
+      ]
+  MaxLineLength:
+    active: true
+  MayBeConst:
+    active: true
+  ModifierOrder:
+    active: true
+  NestedClassesVisibility:
+    active: true
+  NewLineAtEndOfFile:
+    active: true
+  ObjectLiteralToLambda:
+    active: true
+  OptionalAbstractKeyword:
+    active: true
+  PreferToOverPairSyntax:
+    active: true
+  ProtectedMemberInFinalClass:
+    active: true
+  RedundantHigherOrderMapUsage:
+    active: true
+  ReturnCount:
+    active: true
+    excludeReturnFromLambda: true
+    excludeGuardClauses: false
+  SafeCast:
+    active: true
+  SerialVersionUIDInSerializableClass:
+    active: true
+  ThrowsCount:
+    active: true
+    excludeGuardClauses: false
+  UnnecessaryAbstractClass:
+    active: true
+  UnnecessaryApply:
+    active: true
+  UnnecessaryFilter:
+    active: true
+  UnnecessaryInheritance:
+    active: true
+  UnnecessaryLet:
+    active: true
+  UnusedParameter:
+    active: true
+  UnusedPrivateClass:
+    active: true
+  UnusedPrivateMember:
+    active: true
+  UnusedPrivateProperty:
+    active: true
+  UseAnyOrNoneInsteadOfFind:
+    active: true
+  UseArrayLiteralsInAnnotations:
+    active: true
+  UseCheckNotNull:
+    active: true
+  UseCheckOrError:
+    active: true
+  UseIfInsteadOfWhen:
+    active: true
+  UseIsNullOrEmpty:
+    active: true
+  UseOrEmpty:
+    active: true
+  UseRequire:
+    active: true
+  UseRequireNotNull:
+    active: true
+  UselessCallOnNotNull:
+    active: true
+  UtilityClassWithPublicConstructor:
+    active: true
+  VarCouldBeVal:
+    active: true
+  WildcardImport:
+    active: true
+
+formatting:
+  active: true
+  android: false
+  autoCorrect: true
+  AnnotationOnSeparateLine:
+    active: true
+  AnnotationSpacing:
+    active: true
+  ArgumentListWrapping:
+    active: true
+  BlockCommentInitialStarAlignment:
+    active: true
+  ChainWrapping:
+    active: true
+  CommentSpacing:
+    active: true
+  CommentWrapping:
+    active: true
+  EnumEntryNameCase:
+    active: true
+  Filename:
+    active: true
+  FinalNewline:
+    active: true
+  FunKeywordSpacing:
+    active: true
+  FunctionReturnTypeSpacing:
+    active: true
+  FunctionStartOfBodySpacing:
+    active: true
+  FunctionTypeReferenceSpacing:
+    active: true
+  ImportOrdering:
+    active: true
+  Indentation:
+    active: true
+  KdocWrapping:
+    active: true
+  MaximumLineLength:
+    active: true
+  ModifierListSpacing:
+    active: true
+  ModifierOrdering:
+    active: true
+  MultiLineIfElse:
+    active: true
+  NoBlankLineBeforeRbrace:
+    active: true
+  NoBlankLinesInChainedMethodCalls:
+    active: true
+  NoConsecutiveBlankLines:
+    active: true
+  NoEmptyClassBody:
+    active: true
+  NoEmptyFirstLineInMethodBlock:
+    active: true
+  NoLineBreakAfterElse:
+    active: true
+  NoLineBreakBeforeAssignment:
+    active: true
+  NoMultipleSpaces:
+    active: true
+  NoSemicolons:
+    active: true
+  NoTrailingSpaces:
+    active: true
+  NoUnitReturn:
+    active: true
+  NoUnusedImports:
+    active: true
+  NoWildcardImports:
+    active: true
+  NullableTypeSpacing:
+    active: true
+  PackageName:
+    active: true
+  ParameterListWrapping:
+    active: true
+  ParameterWrapping:
+    active: true
+  PropertyWrapping:
+    active: true
+  SpacingAroundAngleBrackets:
+    active: true
+  SpacingAroundColon:
+    active: true
+  SpacingAroundComma:
+    active: true
+  SpacingAroundCurly:
+    active: true
+  SpacingAroundDot:
+    active: true
+  SpacingAroundDoubleColon:
+    active: true
+  SpacingAroundKeyword:
+    active: true
+  SpacingAroundOperators:
+    active: true
+  SpacingAroundParens:
+    active: true
+  SpacingAroundRangeOperator:
+    active: true
+  SpacingAroundUnaryOperator:
+    active: true
+  SpacingBetweenDeclarationsWithAnnotations:
+    active: true
+  SpacingBetweenDeclarationsWithComments:
+    active: true
+  SpacingBetweenFunctionNameAndOpeningParenthesis:
+    active: true
+  StringTemplate:
+    active: true
+  UnnecessaryParenthesesBeforeTrailingLambda:
+    active: true
+  Wrapping:
+    active: true

@@ -7,4 +7,21 @@ plugins {
     alias(libs.plugins.composeMultiplatform) apply false
     alias(libs.plugins.composeCompiler) apply false
     alias(libs.plugins.kotlinMultiplatform) apply false
+    alias(libs.plugins.detekt)
+}
+
+dependencies {
+    detektPlugins(libs.detekt.formatting)
+}
+
+detekt {
+    buildUponDefaultConfig = true
+    config.setFrom("$projectDir/detekt.yml")
+    basePath = projectDir.absolutePath
+    source.setFrom(
+        "composeApp/src/commonMain/kotlin",
+        "composeApp/src/androidMain/kotlin",
+        "composeApp/src/iosMain/kotlin",
+        "composeApp/src/jvmMain/kotlin"
+    )
 }
