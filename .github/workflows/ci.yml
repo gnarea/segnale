@@ -35,7 +35,7 @@ jobs:
           config-file: ./.github/codeql-config.yml
 
       - name: Build all targets
-        run: ./gradlew build --no-daemon --stacktrace
+        run: ./gradlew clean build --no-daemon --stacktrace
 
       - name: Upload test reports
         if: always()
