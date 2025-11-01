@@ -37,6 +37,12 @@ reviews:
         Desktop/JVM-specific implementations. Ensure proper desktop UI patterns
         and JVM-specific optimizations.
 
+    - path: "CLAUDE.md"
+      instructions: |
+        High-level document to steer AI coding agent Claude Code. Must contain
+        all essential context without overlapping significantly with other documents.
+        Keep succinct (under 100 lines).
+
     - path: "*.md"
       instructions: |
         Documentation should be clear, accurate, and aligned with current
