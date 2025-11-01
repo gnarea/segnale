@@ -4,6 +4,9 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    commit-message:
+      prefix: "fix(deps)"
+      prefix-development: "chore(deps)"
     groups:
       kotlin:
         patterns:
@@ -13,3 +16,5 @@ updates:
     directory: "/.github/workflows"
     schedule:
       interval: "weekly"
+    commit-message:
+      prefix: "chore(deps)"
