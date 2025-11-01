@@ -1,0 +1,24 @@
+name: Process pull requests
+on:
+  pull_request:
+    types: [opened, edited]
+
+jobs:
+  dependabot:
+    runs-on: ubuntu-24.04
+    if: ${{ github.actor == 'dependabot[bot]' && github.event.action == 'opened' }}
+    permissions:
+      pull-requests: "write"
+    steps:
+      - name: Auto-merge PR
+        run: gh pr merge --auto --merge "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  semantic-pr-title:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: amannn/action-semantic-pull-request@7f33ba792281b034f64e96f4c0b5496782dd3b37 # v6.1.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
