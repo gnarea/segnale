@@ -12,10 +12,21 @@ jobs:
   claude:
     if: |
       (github.event_name == 'pull_request' && github.event.assignee.login == 'claude') ||
-      (github.event_name == 'pull_request' && github.event.requested_reviewer.login == 'claude') ||
+      (github.event_name == 'pull_request' && contains(github.event.requested_reviewers.*.login, 'claude')) ||
       (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
       (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude'))
+    concurrency:
+      group: >-
+        ${{
+          github.event_name == 'pull_request_review_comment' &&
+          format('claude-thread-{0}', github.event.comment.in_reply_to_id || github.event.comment.id) ||
+          github.event_name == 'pull_request_review' &&
+          format('claude-review-{0}', github.event.review.id) ||
+          format('claude-pr-{0}-{1}', github.event.pull_request.number, github.event_name)
+        }}
+      cancel-in-progress: ${{ github.event_name == 'pull_request_review_comment' }}
     runs-on: ubuntu-24.04
+    timeout-minutes: 10
     permissions:
       contents: write
       pull-requests: write
