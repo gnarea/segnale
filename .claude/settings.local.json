@@ -3,8 +3,12 @@
     "allow": [
       "WebSearch",
       "Bash(./gradlew:*)",
+      "Bash(git log:*)",
       "Bash(gh run list:*)",
-      "Bash(gh run view:*)"
+      "Bash(gh run view:*)",
+      "Bash(gh pr list:*)",
+      "Bash(gh pr view:*)",
+      "Bash(gh repo view:*)"
     ],
     "deny": [],
     "ask": []
