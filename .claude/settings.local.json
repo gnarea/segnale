@@ -4,11 +4,13 @@
       "WebSearch",
       "Bash(./gradlew:*)",
       "Bash(git log:*)",
+      "Bash(git diff:*)",
       "Bash(gh run list:*)",
       "Bash(gh run view:*)",
       "Bash(gh pr list:*)",
       "Bash(gh pr view:*)",
-      "Bash(gh repo view:*)"
+      "Bash(gh repo view:*)",
+      "Bash(gh issue view:*)"
     ],
     "deny": [],
     "ask": []
