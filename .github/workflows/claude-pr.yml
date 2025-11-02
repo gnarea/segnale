@@ -32,6 +32,7 @@ jobs:
       pull-requests: write
       issues: write
       actions: read
+      id-token: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -42,6 +43,6 @@ jobs:
         id: claude
         uses: anthropics/claude-code-action@v1.0.16
         with:
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           claude_args: |
             --max-turns 10
