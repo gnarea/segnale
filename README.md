@@ -59,4 +59,4 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-The full license text is available in the [LICENSE](./LICENSE) file.
+The full licence text is available in the [LICENSE](./LICENSE) file.
