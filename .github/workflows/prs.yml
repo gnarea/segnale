@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-24.04
     if: ${{ github.actor == 'dependabot[bot]' && github.event.action == 'opened' }}
     permissions:
+      contents: "write"
       pull-requests: "write"
     steps:
       - name: Auto-merge PR
