@@ -1,10 +1,13 @@
 {
   "permissions": {
     "allow": [
+      "WebFetch",
       "WebSearch",
       "Bash(./gradlew:*)",
+      "Bash(git ls-remote:*)",
       "Bash(git log:*)",
       "Bash(git diff:*)",
+      "Bash(git status:*)",
       "Bash(gh run list:*)",
       "Bash(gh run view:*)",
       "Bash(gh pr list:*)",
@@ -13,6 +16,6 @@
       "Bash(gh issue view:*)"
     ],
     "deny": [],
-    "ask": []
+    "ask": ["Bash(gh api:*)"]
   }
 }
