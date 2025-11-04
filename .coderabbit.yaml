@@ -17,6 +17,13 @@ reviews:
       - main
 
   path_instructions:
+    - path: ".github/workflows/**/*.yml"
+      instructions: |
+        GitHub Actions workflows MUST use full commit SHAs instead of tags for all actions.
+        This prevents supply chain attacks and ensures reproducible builds.
+        Example: Use 'actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683' instead of 'actions/checkout@v4'.
+        Reject any workflow changes that use tags (e.g., @v4, @v1.2.3) instead of full 40-character commit SHAs.
+
     - path: "composeApp/src/commonMain/**"
       instructions: |
         This is platform-agnostic code. Ensure no platform-specific dependencies.
