@@ -14,6 +14,16 @@ dependencies {
     detektPlugins(libs.detekt.formatting)
 }
 
+dependencyLocking {
+    lockAllConfigurations()
+}
+
+subprojects {
+    dependencyLocking {
+        lockAllConfigurations()
+    }
+}
+
 detekt {
     buildUponDefaultConfig = true
     config.setFrom("$projectDir/detekt.yml")
