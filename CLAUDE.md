@@ -46,6 +46,14 @@ Segnale is a local-first AI signal extraction system that aggregates redundant e
 - Use `jvmTest` or `androidInstrumentedTest` for MockK-dependent tests.
 - Keep `commonTest` MockK-free for cross-platform compatibility.
 
+## Dependency Management
+
+We use Gradle lock files. When adding, updating or removing dependencies, regenerate lock files:
+
+```bash
+./gradlew dependencies --write-locks  # Update lock files
+```
+
 ## Essential Commands
 
 ```bash

@@ -1,0 +1,2 @@
+# Gradle lock files - managed by Gradle, don't show diffs
+*.lockfile -diff
