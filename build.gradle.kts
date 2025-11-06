@@ -15,11 +15,13 @@ dependencies {
 }
 
 dependencyLocking {
+    lockMode.set(LockMode.STRICT)
     lockAllConfigurations()
 }
 
 subprojects {
     dependencyLocking {
+        lockMode.set(LockMode.STRICT)
         lockAllConfigurations()
     }
 }
