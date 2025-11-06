@@ -14,12 +14,7 @@ dependencies {
     detektPlugins(libs.detekt.formatting)
 }
 
-dependencyLocking {
-    lockMode.set(LockMode.STRICT)
-    lockAllConfigurations()
-}
-
-subprojects {
+allprojects {
     dependencyLocking {
         lockMode.set(LockMode.STRICT)
         lockAllConfigurations()
