@@ -15,7 +15,12 @@
       "Bash(gh repo view:*)",
       "Bash(gh issue view:*)"
     ],
-    "deny": [],
+    "deny": [
+      "Edit(./**/*.lockfile)",
+      "Edit(./gradle/verification-metadata.xml)",
+      "Write(./**/*.lockfile)",
+      "Write(./gradle/verification-metadata.xml)"
+    ],
     "ask": ["Bash(gh api:*)"]
   }
 }
