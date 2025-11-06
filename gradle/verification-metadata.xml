@@ -3,6 +3,10 @@
    <configuration>
       <verify-metadata>true</verify-metadata>
       <verify-signatures>false</verify-signatures>
+      <trusted-artifacts>
+           <!-- Android build tools: not included in metadata due to platform-specific resolution -->
+           <trust group="com.android.tools.build" name="aapt2"/>
+      </trusted-artifacts>
    </configuration>
    <components>
       <component group="androidx.activity" name="activity" version="1.11.0">
