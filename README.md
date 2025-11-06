@@ -6,7 +6,7 @@ This is a Kotlin Multiplatform project targeting Android, iOS, Desktop (JVM).
 
 ## Dependencies
 
-Dependencies are locked for reproducible builds. Lock files (`*.lockfile`) and verification metadata are auto-generated with `./gradlew dependencies --write-locks` and `./gradlew --write-verification-metadata sha256`, respectively.
+Dependencies are locked for reproducible builds. Lock files (`*.lockfile`) are auto-generated with `./gradlew dependencies --write-locks`.
 
 ## Code Organisation
 

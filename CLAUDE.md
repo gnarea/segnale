@@ -48,11 +48,10 @@ Segnale is a local-first AI signal extraction system that aggregates redundant e
 
 ## Dependency Management
 
-We use Gradle lock files. When adding, updating or removing dependencies, regenerate Gradle lock and verification metadata files:
+We use Gradle lock files. When adding, updating or removing dependencies, regenerate lock files:
 
 ```bash
 ./gradlew dependencies --write-locks  # Update lock files
-./gradlew --write-verification-metadata sha256  # Update checksums
 ```
 
 ## Essential Commands

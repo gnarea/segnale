@@ -1,3 +1,2 @@
 # Gradle lock files - managed by Gradle, don't show diffs
 *.lockfile -diff
-gradle/verification-metadata.xml -diff

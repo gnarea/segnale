@@ -17,9 +17,7 @@
     ],
     "deny": [
       "Edit(./**/*.lockfile)",
-      "Edit(./gradle/verification-metadata.xml)",
-      "Write(./**/*.lockfile)",
-      "Write(./gradle/verification-metadata.xml)"
+      "Write(./**/*.lockfile)"
     ],
     "ask": ["Bash(gh api:*)"]
   }
