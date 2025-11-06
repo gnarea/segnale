@@ -16,7 +16,6 @@ dependencies {
 
 allprojects {
     dependencyLocking {
-        lockMode.set(LockMode.STRICT)
         lockAllConfigurations()
     }
 }
