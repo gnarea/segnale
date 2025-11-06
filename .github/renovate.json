@@ -30,6 +30,7 @@
     {
       "description": "Auto-merge patch and minor updates",
       "matchUpdateTypes": ["patch", "minor"],
+      "ignoreUnstable": true,
       "automerge": true
     }
   ]
