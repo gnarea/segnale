@@ -136,7 +136,7 @@ jobs:
 
       - name: Run Android instrumentation tests
         if: false # Re-enable when instrumentation tests are added
-        uses: ReactiveCircus/android-emulator-runner@b530d96654c385303d652368551fb075bc2f0b6b # v2
+        uses: ReactiveCircus/android-emulator-runner@b530d96654c385303d652368551fb075bc2f0b6b # v2.35.0
         with:
           api-level: ${{ matrix.api-level }}
           target: google_apis
