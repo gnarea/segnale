@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
-      contents: read
+      contents: write # To submit dependency graph files
       security-events: write
 
     steps:
@@ -26,6 +26,8 @@ jobs:
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@4d9f0ba0025fe599b4ebab900eb7f3a1d93ef4c2 # v5
+        with:
+          dependency-graph: generate-and-submit
 
       - name: Build all targets
         run: ./gradlew build --no-daemon --stacktrace
@@ -134,7 +136,7 @@ jobs:
 
       - name: Run Android instrumentation tests
         if: false # Re-enable when instrumentation tests are added
-        uses: ReactiveCircus/android-emulator-runner@1dcd0090116d15e7c562f8db72807de5e036a4ed # v2
+        uses: ReactiveCircus/android-emulator-runner@b530d96654c385303d652368551fb075bc2f0b6b # v2.35.0
         with:
           api-level: ${{ matrix.api-level }}
           target: google_apis

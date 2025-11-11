@@ -4,6 +4,12 @@ Segnale uses AI to aggregate redundant event coverage from automated emails and 
 
 This is a Kotlin Multiplatform project targeting Android, iOS, Desktop (JVM).
 
+## Dependencies
+
+Dependencies are locked for reproducible builds. Lock files (`*.lockfile`) are auto-generated with `./gradlew dependencies --write-locks`.
+
+## Code Organisation
+
 * [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
   It contains several subfolders:
   - [commonMain](./composeApp/src/commonMain/kotlin) is for code that’s common for all targets.
