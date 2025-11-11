@@ -4,19 +4,6 @@ on:
     types: [opened, edited]
 
 jobs:
-  dependabot:
-    runs-on: ubuntu-24.04
-    if: ${{ github.actor == 'dependabot[bot]' && github.event.action == 'opened' }}
-    permissions:
-      contents: "write"
-      pull-requests: "write"
-    steps:
-      - name: Auto-merge PR
-        run: gh pr merge --auto --squash "$PR_URL"
-        env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
   semantic-pr-title:
     runs-on: ubuntu-24.04
     steps:
