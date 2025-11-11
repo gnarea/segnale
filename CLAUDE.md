@@ -80,5 +80,5 @@ We use Gradle lock files. When adding, updating or removing dependencies, regene
 ## Documentation
 
 - Architecture details: `arch.md`.
-- Product vision & roadmap: `IDEA.md`.
+- Product vision & roadmap: `PRD.md`.
 - Setup & build: `README.md`.
