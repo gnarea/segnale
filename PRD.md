@@ -1,10 +1,10 @@
-# Product Requirements Document: Segnale
+# Segnale: Product Requirements Document
 
 ## Vision
 
 An intelligent attention management system that surfaces signals from information noise across multiple sources. Aggregates redundant event coverage into unified entries, presents context-aware feeds based on available attention, and manages dynamic tasks that auto-expire when no longer relevant.
 
-The system works with open protocols and formats - email newsletters, RSS feeds, and federated social media (BlueSky) - while providing an extensible architecture for custom integrations. The initial focus is email newsletters, but the design is source-agnostic from the start. Human correspondence remains untouched; only broadcast content (newsletters, feeds, social posts) is processed for signal extraction.
+The system works with open protocols and formats - email newsletters, RSS feeds, and federated social media (BlueSky) - while providing an extensible architecture for custom integrations. The initial focus is email, but the design is source-agnostic from the start. All content is processed intelligently: broadcast content is aggregated across sources, verbose messages are summarized for clarity, and transactional content is prioritized based on urgency regardless of source.
 
 ## Problem Statement
 
@@ -21,9 +21,10 @@ Current systems don't distinguish between a 2-minute break (headlines only) and 
 3. Profile Segregation - Distinct interest areas (Technology, Motorcycles, World Politics) consumed independently.
 4. Dynamic Tasks - Tasks auto-expire when relevance window closes. No ever-growing to-do lists.
 5. Behaviour Learning - AI-driven prioritisation with explicit feedback mechanisms for urgency, depth, and relevance.
-6. Clean Source Management - Process and archive broadcast content (newsletters, feeds) after extraction. Human correspondence stays untouched.
+6. Clean Source Management - Process and archive all content (newsletters, feeds, human correspondence) after extraction. Verbose messages are summarized, broadcast content is aggregated.
 7. Meritocratic Signals - Source-agnostic ranking based solely on topic importance to user.
 8. Extensible Architecture - Open plugin system for custom source integrations beyond built-in protocols.
+9. Inbox Zero Philosophy - Single item at a time, everything must be acted upon. No items left in limbo.
 
 ## User Scenarios
 
@@ -72,15 +73,20 @@ Each profile has its own set of sources - newsletters, RSS feeds, social media a
 
 ### 3. Dynamic Task Management
 
-All feed items are tasks - things to acknowledge, read, or act upon. Tasks are automatically created from content requiring action (bills, deliveries, group emails) and expire when their relevance window closes. Week-old world news auto-discards, while high-importance topics persist longer.
+All feed items are things to acknowledge, read, or act upon. Items auto-expire when their relevance window closes - week-old world news auto-discards, while high-importance topics persist longer based on learned behaviour.
+
+When content requires action (bills, deliveries, reminders), AI suggests specific tasks that can be created in an external task management system. Segnale handles task creation and maintains awareness of which tasks exist to avoid duplicates or contradictions. The external task manager handles scheduling, reminders, and due dates.
 
 Actionable intelligence means bills get flagged only if unusual (extra charges, significant amount variance), shipping notifications create tasks the day after expected delivery, and delivery PINs trigger immediate notifications.
 
-Available actions:
-- Mark as read (item disappears from feed)
-- Save for later (re-surfaces based on priority)
-- Create manual task
-- Provide feedback (adjust urgency, depth, relevance)
+Task creation flow:
+- AI suggests relevant tasks based on content (e.g., "Pay electricity bill by June 15")
+- User reviews and approves suggested tasks
+- Tasks sent to external task manager via API
+- Toast confirmation shown to user
+- Feed item remains until user archives/mutes it
+
+Segnale tracks created tasks to enable future features like editing existing tasks or preventing duplicate task suggestions.
 
 ### 4. Context-Aware Feed Presentation
 
@@ -96,11 +102,13 @@ The default view is algorithmically ranked by:
 Different source types require different handling strategies:
 
 Email classification:
-- Human email: Sender in address book or personally addressed content → Archive after processing
+- Human email: Sender in address book or personally addressed content → Prioritized highly, verbose messages automatically summarized, archive after processing
 - Newsletter: Broadcast distribution, multi-topic digest → Process and archive after signal extraction
-- Transactional: Action required (bank, bills, deliveries) → Task creation, notification based on urgency
-- Group email: Multiple recipients → Highlight participants, summarise conversation
+- Transactional: Action required (bank, bills, deliveries) → Task creation, notification based on urgency, prioritized regardless of source
+- Group email: Multiple recipients → Highlight participants, summarise conversation, fold replies into single feed item
 - GitHub notifications: Extensive filtering - only surface items genuinely needing attention
+
+Priority override: Content urgency and importance take precedence over source type. Urgent transactional emails outrank non-urgent personal messages. Address book status increases baseline priority but doesn't guarantee top placement.
 
 RSS feeds: Parse per-item or aggregate full feed based on source type (single-author blog vs. multi-contributor news site)
 
@@ -112,12 +120,19 @@ Priority override: Content requiring action (transactional emails, urgent mentio
 
 Users specify initial interests and preferences per profile. The system then learns from behaviour - tracking which items are read vs dismissed, monitoring time spent on different topics, and observing feedback corrections.
 
-Explicit feedback mechanisms:
-- Adjust urgency for specific items
-- Request more/less depth on topics
-- Flag false positives (shouldn't have been surfaced)
+**All user actions contribute to learning**:
+- Archive, mute, skip, follow/upvote gestures signal preference
+- Time spent on items indicates interest level
+- Task creation patterns show action triggers
+- Reading depth (summary vs full expansion) reveals attention allocation
+- All data stored locally for future product insights and algorithm refinement
 
-Over time, prioritisation and presentation depth become progressively more accurate, matching user preferences without manual configuration.
+Explicit feedback mechanisms:
+- Follow/upvote - want more content like this
+- Mute - don't show this topic/thread
+- Skip/save for later - not now, resurface intelligently
+
+Over time, prioritisation and presentation depth become progressively more accurate, matching user preferences without manual configuration. Behaviour data enables product decisions based on actual usage patterns.
 
 ### 7. Urgency Tiers
 
@@ -157,9 +172,65 @@ Example use cases:
 
 Plugins are first-class citizens in the aggregation pipeline - custom source events are deduplicated alongside built-in sources, participate in cross-source event matching, and follow the same urgency and presentation rules.
 
-## Progressive Delivery Strategy
+### 9. Single-Item Feed Interface
 
-### Phase 1: Email Aggregation (Minimum Viable)
+The feed presents one item at a time, eliminating attention competition and enabling focused processing. Each item displays its content with immediately visible actions - no tapping required to see available options.
+
+**Gesture controls**:
+- **Swipe right**: Archive - item dealt with, removed from feed, kept for learning
+- **Swipe left**: Mute - stop showing updates on this topic/thread (can resurface if becomes critically urgent)
+- **Swipe down**: Skip - move to next item, current item resurfaces later based on algorithm
+- **Swipe up**: Previous - go back to previous item, undo last action
+- **Tap**: Expand/collapse - toggle between summary and detailed view
+
+After archive or mute actions, the next item appears automatically. No manual navigation required for forward progress.
+
+**Visible actions** (shown directly on each item):
+- Create task(s) - AI suggests relevant tasks, user approves, sent to external task manager
+- Follow/upvote - signal importance, want more like this
+- View full thread - for mailing list conversations (when applicable)
+- Copy parameter - for OTP codes, tracking numbers (when detected)
+
+**Progress indication**: Display "5 of 23 items" showing position in current feed queue. No detailed queue view to prevent attention fragmentation.
+
+**Empty state**: When all items processed, show completion message with option to view archive.
+
+### 10. Parameter Extraction
+
+Automatically extract actionable parameters from content - OTP codes, delivery PINs, tracking numbers, confirmation codes.
+
+**Extraction flow**:
+- Detection runs automatically on all incoming content
+- When parameters detected, system notification appears with succinct summary
+- Notification shows copy button for each extracted parameter
+- Copying parameter to clipboard automatically deletes the source item (soft delete to bin)
+- Parameters only accessible while notification is visible
+- If multiple parameters detected (e.g., tracking number AND delivery PIN), all are extracted and prioritised in UI
+
+**Example**: Email with "Your delivery PIN is 4782" triggers notification: "Delivery PIN received" with button "Copy: 4782". After copy, email soft-deleted.
+
+This streamlines MFA workflows, package tracking, and other parameter-dependent tasks without manual intervention.
+
+### 11. Thread Evolution Tracking
+
+Mailing list threads and evolving conversations fold into single feed items that update as new replies arrive.
+
+**Thread folding**:
+- Multiple emails from same thread = single feed item
+- Item shows "5 new replies since last view" indicator
+- Tapping item expands to show thread evolution summary
+- User's own replies clearly highlighted to track follow-ups needed
+- "View full thread" action available for complete history
+
+**Mute behaviour for threads**:
+- Muted threads stop generating feed updates
+- If thread evolves into materially different or critically important topic, it can resurface with "Previously muted topic now critical" indicator
+- Mute applies to specific thread, not entire topic category (unless user specifies otherwise)
+
+This prevents inbox clutter from active discussions while ensuring important developments aren't missed.
+
+## MVP: Email Aggregation
+
 Goal: Daily usability threshold
 
 The first phase focuses exclusively on email as a source, but implements the source-agnostic architecture from the start to enable future expansion.
@@ -167,65 +238,20 @@ The first phase focuses exclusively on email as a source, but implements the sou
 Scope:
 - Multi-source event aggregation (email newsletters)
 - Email classification (human, newsletter, transactional)
-- Basic feed presentation (most urgent first)
-- Email management (archive human, process and archive newsletters)
+- Human email summarisation for verbose messages
+- Single-item feed interface with gesture controls
+- Parameter extraction (OTP codes, delivery PINs)
+- Thread evolution tracking for mailing lists
+- Basic task creation integration (external task manager)
+- Email management (archive, mute, process all email types)
 - In-app email viewing
-- Plugin API foundation (even if no additional sources yet)
+- Behaviour tracking and learning foundation
 
-Success criteria: Single aggregated entry for redundant events, reduced time spent consuming newsletter content by >50%, daily usage begins.
-
-### Phase 2: Task & Urgency Management
-Goal: Replace email client for all personal correspondence
-
-Scope:
-- Dynamic task creation and auto-expiry
-- Multi-tier urgency classification
-- Push notifications for immediate items
-- Timeout-based notifications
-- Transactional email intelligence (bill anomalies, shipping tracking)
-
-Success criteria: Zero manual email triage, all actionable items surfaced at appropriate times, Gmail only opened for sending replies.
-
-### Phase 3: Context-Aware Presentation
-Goal: Attention-optimised information consumption
-
-Scope:
-- Calendar integration for context inference
-- Profile segregation (Technology, Motorcycles, World Politics)
-- Adaptive depth presentation (headlines vs deep dives)
-- Behaviour learning and feedback loops
-
-Success criteria: Context-appropriate content presented without manual profile switching >80% of the time, user adjusts urgency/depth <10% of items.
-
-### Phase 4: Multi-Source Aggregation
-Goal: Unified information hub across all sources
-
-Scope:
-- RSS feed integration (blogs, news sites, podcasts)
-- Social media integration (Reddit, HackerNews, YouTube, BlueSky)
-- Cross-platform event aggregation
-- Meritocratic ranking across all sources
-
-Success criteria: All information consumption happens through Segnale, email client only used for sending messages.
-
-## Success Criteria
-
-Phase 1:
-- Redundant event coverage reduced to single entries
-- Time spent consuming newsletters reduced by >50%
-- Daily usage begins
-
-Phase 2:
-- Zero missed actionable items (bills, deliveries, important content)
-- Email client only opened for sending replies
-
-Phase 3:
-- Context-appropriate content presented without manual profile switching >80% of the time
-- User adjusts urgency/depth <10% of items (high accuracy)
-
-Phase 4:
-- All information sources consumed via Segnale
-- Email client fully replaced for consumption
+Success criteria:
+- Single aggregated entry for redundant events
+- Reduced time spent consuming newsletter content by >50%
+- Zero missed OTP codes or delivery PINs
+- Daily usage begins with inbox zero workflow
 
 ## Out of Scope
 
@@ -233,7 +259,13 @@ Phase 4:
 - Commercialisation or multi-user support
 - Real-time processing (background batch processing acceptable)
 - Perfect classification (acceptable to miss edge cases)
-- Sending/replying to emails (use existing email client)
+
+## Future Scope (Not MVP)
+
+- Sending and replying to emails - desired eventually, but MVP focuses on consumption only
+- AI agent for security vulnerability analysis across GitHub repositories
+- Search functionality for archived items
+- Multi-source aggregation (RSS, social media) - Phase 2+
 
 ## Open Questions
 
