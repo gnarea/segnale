@@ -51,8 +51,8 @@ reviews:
 
     - path: "*.md"
       instructions: |
-        Documentation should be clear, accurate, and aligned with current
-        implementation. Check for outdated information.
+        Documentation should be clear, accurate, and aligned with current implementation.
+        British spelling MUST be used.
 
   pre_merge_checks:
     docstrings:

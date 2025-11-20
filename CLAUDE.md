@@ -20,7 +20,7 @@ Segnale is a local-first AI signal extraction system that aggregates redundant e
 - Dependencies ALWAYS point inward.
 - Domain layer has zero platform dependencies.
 
-## Module Organization
+## Module Organisation
 
 - `composeApp/commonMain/`: Platform-agnostic domain logic and UI.
 - `composeApp/androidMain/`: Gmail API, Room driver, WorkManager.
@@ -79,6 +79,6 @@ We use Gradle lock files. When adding, updating or removing dependencies, regene
 
 ## Documentation
 
-- Architecture details: `arch.md`.
-- Product vision & roadmap: `PRD.md`.
+- Architecture details: `architecture.md`.
+- Product vision & roadmap: `product.md`.
 - Setup & build: `README.md`.

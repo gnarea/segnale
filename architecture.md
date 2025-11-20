@@ -41,7 +41,7 @@ Segnale is a local-first Android app (with future iOS/Desktop support) that extr
 - **MockK**: Mocking framework.
 - **Detekt + ktlint**: Static analysis and code formatting.
 
-## Module Organization
+## Module Organisation
 
 Project generated via Android Studio KMP wizard with the following structure:
 
@@ -140,7 +140,7 @@ Project generated via Android Studio KMP wizard with the following structure:
 - Notification service for high-urgency signals.
 
 ### V1 → V2: Multi-Source Aggregation
-- Generalize EmailSource to ContentSource interface.
+- Generalise EmailSource to ContentSource interface.
 - Add RedditSource, TwitterSource, etc. implementing same abstraction.
 - Cross-platform event matching in SignalExtractor.
 - Unified feed aggregation regardless of content source.
@@ -173,9 +173,9 @@ Project generated via Android Studio KMP wizard with the following structure:
 
 **Local-First**: All user data persists locally. Only newsletter content sent to LLM APIs for processing.
 
-**OAuth Scope Minimization**: Request minimal Gmail API scopes necessary (read + modify, no full access).
+**OAuth Scope Minimisation**: Request minimal Gmail API scopes necessary (read + modify, no full access).
 
-**Future Anonymization**: V1 may introduce local LLM pre-processing to remove PII before remote API calls.
+**Future Anonymisation**: V1 may introduce local LLM pre-processing to remove PII before remote API calls.
 
 ## CI/CD
 
