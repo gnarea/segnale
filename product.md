@@ -23,7 +23,7 @@ Segnale works with open protocols (email, RSS, BlueSky) and provides an extensib
 ## User Scenarios
 
 | Context | Attention Level | Content Depth | Example |
-|---------|----------------|---------------|---------|
+| ------- | --------------- | ------------- | ------- |
 | Two-minute break | Minimal | Headlines only | Quick scan between meetings |
 | Morning breakfast | Moderate | Mixed depth | Scan and engage with interesting items |
 | Weekly lunch session | High | Deep dives | 30–60 minutes focused reading |
@@ -36,6 +36,7 @@ Segnale works with open protocols (email, RSS, BlueSky) and provides an extensib
 Events are extracted from each source, matched across channels, and unified into single feed entries. Never show the same news multiple times.
 
 Each aggregated entry contains:
+
 - Event title and executive summary.
 - Source count and names.
 - Deep dive section (length varies by topic importance to user).

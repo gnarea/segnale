@@ -162,6 +162,7 @@ Project generated via Android Studio KMP wizard with the following structure:
 **ContentSource Abstraction**: Extensible interface for integrating custom content sources beyond built-in protocols (email, RSS, BlueSky).
 
 **Plugin Contract**:
+
 - **Content Fetching**: Standard interface for retrieving content from external sources.
 - **Event Extraction**: Transform source-specific formats to unified event model (title, summary, timestamp, metadata).
 - **Profile Association**: Hook for mapping plugin content to user-defined profiles.
@@ -170,6 +171,7 @@ Project generated via Android Studio KMP wizard with the following structure:
 **Integration Pattern**: Plugins implement the ContentSource interface and register via Koin dependency injection. Once registered, plugin events participate in the core aggregation pipeline alongside built-in sources - deduplicated, matched across sources, and ranked by the same urgency/relevance algorithms.
 
 **Use Cases**:
+
 - Slack workspace monitoring with keyword filtering.
 - Custom corporate tool integrations.
 - Niche platforms without official API support.
