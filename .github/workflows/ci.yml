@@ -8,7 +8,7 @@ on:
 jobs:
   build-and-test:
     name: Build and test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     permissions:
       contents: write # To submit dependency graph files
@@ -155,3 +155,9 @@ jobs:
             **/build/reports/androidTests/
             **/build/outputs/androidTest-results/
           retention-days: 7
+
+  proofreading:
+    name: Build and test
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: DavidAnson/markdownlint-cli2-action@30a0e04f1870d58f8d717450cc6134995f993c63 # v21.0.0
