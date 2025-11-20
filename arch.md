@@ -17,25 +17,30 @@ Segnale is a local-first Android app (with future iOS/Desktop support) that extr
 ## Technology Stack
 
 ### Core Platform
+
 - **Kotlin Multiplatform (KMP)**: Shared business logic across Android, iOS, Desktop
 - **Compose Multiplatform**: Shared declarative UI framework
 - **Gradle 8.x**: Build system with Kotlin DSL and version catalogs
 
 ### Data & Storage
+
 - **Room KMP**: Local database for signals, tasks, email metadata, and preferences
 - **Gmail API**: Email access via official Google API (not IMAP)
 - **kotlinx.serialization**: JSON serialization for API responses
 
 ### LLM Integration
+
 - **Anthropic Java SDK**: Initial LLM provider for classification and extraction
 - **Custom abstraction layer**: Provider-agnostic interface to support multiple LLM vendors
 
 ### Infrastructure
+
 - **Koin**: Lightweight dependency injection
 - **kotlinx.coroutines**: Async/reactive programming
 - **WorkManager**: Background email sync (Android-specific)
 
 ### Testing & Quality
+
 - **kotlin-test + Kotest**: Cross-platform testing
 - **Turbine**: Flow/reactive stream testing
 - **MockK**: Mocking framework
@@ -63,6 +68,7 @@ Project generated via Android Studio KMP wizard with the following structure:
 **EmailSource**: Abstraction for email access. Provides operations to fetch unread emails, mark as read, and archive. Implementation lives in `androidMain` using Gmail API.
 
 **SignalExtractor**: Orchestrates LLM-based processing:
+
 - Classifies emails (human/newsletter/transactional/spam)
 - Extracts events from newsletters
 - Aggregates signals across multiple newsletter sources
@@ -77,6 +83,7 @@ Project generated via Android Studio KMP wizard with the following structure:
 **Purpose**: Decouple application logic from specific LLM vendors (Anthropic, OpenAI, Gemini, local models).
 
 **Key Operations**:
+
 - **classify**: Determine email category (human vs newsletter vs transactional)
 - **summarize**: Generate concise summaries of newsletter content
 - **extractSignals**: Parse newsletters to identify events, topics, and relationships
@@ -84,6 +91,7 @@ Project generated via Android Studio KMP wizard with the following structure:
 **Provider Implementations**: Each vendor implements the same interface with provider-specific SDK integration. Switching providers is a configuration change via dependency injection.
 
 **Rationale**:
+
 - Enables A/B testing different LLM providers
 - Future-proofs against vendor lock-in
 - Supports hybrid approaches (local + remote LLMs)
@@ -134,12 +142,14 @@ Project generated via Android Studio KMP wizard with the following structure:
 ## Extensibility
 
 ### MVP → V1: Multi-Tier Urgency
+
 - Add UrgencyClassifier component to assess signal time sensitivity
 - Extend domain models with urgency metadata
 - Introduce TaskManager for actionable items with due dates
 - Notification service for high-urgency signals
 
 ### V1 → V2: Multi-Source Aggregation
+
 - Generalize EmailSource to ContentSource interface
 - Add RedditSource, TwitterSource, etc. implementing same abstraction
 - Cross-platform event matching in SignalExtractor
@@ -160,6 +170,7 @@ Project generated via Android Studio KMP wizard with the following structure:
 ## CI/CD
 
 **GitHub Actions** for continuous integration:
+
 - Automated testing on every PR
 - Static analysis (Detekt) and formatting checks (ktlint)
 - Build verification for all platforms
