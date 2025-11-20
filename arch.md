@@ -6,7 +6,7 @@ Segnale is a local-first Android app (with future iOS/Desktop support) that extr
 
 ## Architecture Pattern
 
-**Clean Architecture** organized in three layers:
+**Clean Architecture** organised in three layers:
 
 - **Domain Layer**: Pure business logic, use cases, and domain models. No platform dependencies, fully testable.
 - **Data Layer**: Repository implementations, API clients, database access. Implements interfaces defined in domain layer.
@@ -125,7 +125,7 @@ Project generated via Android Studio KMP wizard with the following structure:
 
 ## Background Processing
 
-**WorkManager**: Android's recommended approach for deferrable, guaranteed background work. Schedules periodic email sync with system-optimized intervals.
+**WorkManager**: Android's recommended approach for deferrable, guaranteed background work. Schedules periodic email sync with system-optimised intervals.
 
 **Constraints**: Sync only when device has network connectivity and sufficient battery. Respects Android battery optimization settings.
 
@@ -147,6 +147,26 @@ Project generated via Android Studio KMP wizard with the following structure:
 
 **Design Decision**: Architecture designed around interfaces rather than concrete implementations. New sources or LLM providers integrate without modifying existing code.
 
+## Plugin Architecture
+
+**ContentSource Abstraction**: Extensible interface for integrating custom content sources beyond built-in protocols (email, RSS, BlueSky).
+
+**Plugin Contract**:
+- **Content Fetching**: Standard interface for retrieving content from external sources
+- **Event Extraction**: Transform source-specific formats to unified event model (title, summary, timestamp, metadata)
+- **Profile Association**: Hook for mapping plugin content to user-defined profiles
+- **Custom Classification**: Optional override for source-specific urgency and categorization logic
+
+**Integration Pattern**: Plugins implement the ContentSource interface and register via Koin dependency injection. Once registered, plugin events participate in the core aggregation pipeline alongside built-in sources - deduplicated, matched across sources, and ranked by the same urgency/relevance algorithms.
+
+**Use Cases**:
+- Slack workspace monitoring with keyword filtering
+- Custom corporate tool integrations
+- Niche platforms without official API support
+- Proprietary newsletter formats requiring specialized parsing
+
+**Design Rationale**: First-class plugin support from V1 enables custom integrations without modifying core codebase. Users can extend Segnale to their specific workflows while benefiting from existing aggregation and presentation logic.
+
 ## Security & Privacy
 
 **API Key Management**: Store sensitive credentials in platform-specific secure storage (Android Keystore, iOS Keychain). Never commit to version control.
@@ -167,8 +187,13 @@ Project generated via Android Studio KMP wizard with the following structure:
 
 ## Open Questions
 
-- **Event Matching**: Algorithm for identifying "same event" across different newsletters (semantic similarity vs keyword matching?)
-- **Newsletter Parsing**: Single-topic vs multi-topic extraction strategy
+- **Event Matching**: Algorithm for identifying "same event" across different newsletters (semantic similarity vs keyword matching vs embedding-based clustering?)
+- **Newsletter Parsing**: Single-topic vs multi-topic extraction strategy. How to handle cross-source matching with title variations?
+- **Task Expiry**: Default expiry windows per urgency tier (FYI world news = 7 days, AI releases = 30 days?). User-configurable or learned from behaviour?
+- **Behaviour Learning**: Cold-start problem - how much manual configuration needed before AI takes over? Explicit prompts vs passive observation for feedback collection?
 - **Urgency Thresholds**: Concrete criteria for multi-tier classification (V1)
+- **Source Management**: Gmail API reliability for processing/archiving - fallback if operations fail? RSS polling frequency vs resource usage for high-volume feeds?
+- **Plugin Security**: Sandboxing third-party plugins vs trusting user-installed code? Plugin discovery mechanism (centralized registry vs manual installation)?
+- **Calendar Integration**: Privacy model - what calendar data accessed? Local processing only? How reliably can attention be inferred from calendar events? (V1)
 - **Local LLM Choice**: Preferred approach for on-device anonymization (ONNX, Ollama, custom?) (V1)
 - **Sync Frequency**: Optimal balance between freshness and battery impact
