@@ -51,8 +51,8 @@ reviews:
 
     - path: "*.md"
       instructions: |
-        Documentation should be clear, accurate, and aligned with current
-        implementation. Check for outdated information.
+        Documentation should be clear, accurate, and aligned with current implementation.
+        British spelling MUST be used.
 
   pre_merge_checks:
     docstrings:
@@ -84,6 +84,6 @@ knowledge_base:
   code_guidelines:
     enabled: true
     filePatterns:
-      - "IDEA.md"
-      - "arch.md"
+      - "product.md"
+      - "architecture.md"
       - "README.md"
