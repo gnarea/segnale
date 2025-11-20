@@ -4,7 +4,7 @@
 
 Segnale is an intelligent attention management system that aggregates information from multiple sources into a unified feed. It eliminates redundant coverage of the same events across newsletters, RSS feeds, and social media, presenting each topic once with combined insights from all sources. The system matches content depth to available attention, adapts to learned preferences, and manages tasks that auto-expire when no longer relevant.
 
-Today, major events appear across dozens of sources throughout the week - the same AI release covered in five newsletters, three RSS feeds, and countless social posts. Each requires separate attention at different times, forcing context-switching to piece together a complete picture. Meanwhile, information consumption happens in fragmented windows: a 2-minute break between meetings, a 30-minute lunch session, an evening commute. Current systems ignore this reality, presenting everything with equal urgency and depth regardless of available cognitive bandwidth. Valuable signals are buried in noise, urgent items arrive without priority, and feeds pile up until abandoned.
+Today, major events appear across dozens of sources throughout the week - the same AI release covered in five newsletters, three RSS feeds, and countless social posts. Each requires separate attention at different times, forcing context-switching to piece together a complete picture. Meanwhile, information consumption happens in fragmented windows: a 2-minute break between meetings, a 30-minute lunch session, an evening commute. Current systems ignore this reality, presenting everything with equal urgency and depth regardless of available cognitive bandwidth. Valuable signals are buried in noise, urgent items arrive without priority, and feeds pile up before being abandoned.
 
 Segnale works with open protocols (email, RSS, BlueSky) and provides an extensible plugin architecture for custom integrations. The initial focus is email, but the design is source-agnostic from the start. Content is processed intelligently: broadcast content aggregated across sources, verbose messages summarised, transactional content prioritised by urgency regardless of origin.
 
@@ -26,7 +26,7 @@ Segnale works with open protocols (email, RSS, BlueSky) and provides an extensib
 |---------|----------------|---------------|---------|
 | Two-minute break | Minimal | Headlines only | Quick scan between meetings |
 | Morning breakfast | Moderate | Mixed depth | Scan and engage with interesting items |
-| Weekly lunch session | High | Deep dives | 30-60 minutes focused reading |
+| Weekly lunch session | High | Deep dives | 30–60 minutes focused reading |
 | Evening commute | Extended | Long-form | Aggregated analyses from multiple sources |
 
 ## Core Features
@@ -121,7 +121,7 @@ One item displayed at a time for focused processing. Actions immediately visible
 
 - Swipe right: Archive.
 - Swipe left: Mute topic/thread (can resurface if critically urgent).
-- Swipe down: Skip (resurfaces later algorithmically).
+- Swipe down: Skip (resurfaces later algorithmically),
 - Swipe up: Previous (undo last action).
 - Tap: Expand/collapse summary ↔ detail.
 
@@ -164,7 +164,7 @@ Mailing list threads fold into single feed items that update as new replies arri
 **Mute behaviour:**
 
 - Muted threads stop generating updates.
-- Can resurface if becomes critically important ("Previously muted topic now critical").
+- Can resurface if it becomes critically important ("Previously muted topic now critical").
 - Mute applies to specific thread, not entire topic category.
 
 ## Out of Scope

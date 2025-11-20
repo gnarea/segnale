@@ -187,13 +187,28 @@ Project generated via Android Studio KMP wizard with the following structure:
 
 ## Open Questions
 
-- **Event Matching**: Algorithm for identifying "same event" across different newsletters (semantic similarity vs keyword matching vs embedding-based clustering?).
-- **Newsletter Parsing**: Single-topic vs multi-topic extraction strategy. How to handle cross-source matching with title variations?
-- **Task Expiry**: Default expiry windows per urgency tier (FYI world news = 7 days, AI releases = 30 days?). User-configurable or learned from behaviour?
-- **Behaviour Learning**: Cold-start problem - how much manual configuration needed before AI takes over? Explicit prompts vs passive observation for feedback collection?
-- **Urgency Thresholds**: Concrete criteria for multi-tier classification (V1).
-- **Source Management**: Gmail API reliability for processing/archiving - fallback if operations fail? RSS polling frequency vs resource usage for high-volume feeds?
-- **Plugin Security**: Sandboxing third-party plugins vs trusting user-installed code? Plugin discovery mechanism (centralized registry vs manual installation)?
-- **Calendar Integration**: Privacy model - what calendar data accessed? Local processing only? How reliably can attention be inferred from calendar events? (V1)
-- **Local LLM Choice**: Preferred approach for on-device anonymization (ONNX, Ollama, custom?) (V1).
-- **Sync Frequency**: Optimal balance between freshness and battery impact.
+### MVP Critical
+
+Questions requiring resolution before initial launch:
+
+- **Event Matching** *(Feature 1: Multi-Source Event Aggregation)*: Algorithm for identifying "same event" across different newsletters (semantic similarity vs keyword matching vs embedding-based clustering?).
+- **Newsletter Parsing** *(Feature 1: Multi-Source Event Aggregation)*: Single-topic vs multi-topic extraction strategy. How to handle cross-source matching with title variations?
+- **Task Expiry** *(Feature 3: Dynamic Task Management)*: Default expiry windows per urgency tier (FYI world news = 7 days, AI releases = 30 days?). User-configurable or learned from behaviour?
+- **Behaviour Learning** *(Feature 6: Behaviour Learning & Feedback)*: Cold-start problem - how much manual configuration needed before AI takes over? Explicit prompts vs passive observation for feedback collection?
+- **Source Management** *(Feature 5: Intelligent Content Classification)*: Gmail API reliability for processing/archiving - fallback if operations fail?
+- **Sync Frequency** *(Background Processing)*: Optimal balance between freshness and battery impact.
+
+### V1 Features
+
+Questions aligned with V1 feature development:
+
+- **Urgency Thresholds** *(Feature 7: Urgency Tiers)*: Concrete criteria for multi-tier classification and notification triggers.
+- **Calendar Integration** *(Feature 4: Context-Aware Feed Presentation)*: Privacy model - what calendar data accessed? Local processing only? How reliably can attention be inferred from calendar events?
+- **Local LLM Choice** *(Privacy Enhancement)*: Preferred approach for on-device anonymisation (ONNX, Ollama, custom?).
+- **Plugin Security** *(Feature 8: Extensible Source Architecture)*: Sandboxing third-party plugins vs trusting user-installed code? Plugin discovery mechanism (centralized registry vs manual installation)?
+
+### Long-term
+
+Future considerations for multi-source expansion:
+
+- **RSS Polling Strategy** *(Feature 8: Extensible Source Architecture)*: Optimal polling frequency vs resource usage for high-volume RSS feeds when multi-source support is added.
