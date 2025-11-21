@@ -10,15 +10,9 @@
   "platformAutomerge": true,
   "packageRules": [
     {
-      "description": "Production dependencies use fix(deps) prefix",
-      "matchDepTypes": ["dependencies"],
+      "description": "Gradle dependencies use fix(deps) prefix",
+      "matchManagers": ["gradle", "gradle-wrapper"],
       "semanticCommitType": "fix",
-      "semanticCommitScope": "deps"
-    },
-    {
-      "description": "Development dependencies use chore(deps) prefix",
-      "matchDepTypes": ["devDependencies"],
-      "semanticCommitType": "chore",
       "semanticCommitScope": "deps"
     },
     {
