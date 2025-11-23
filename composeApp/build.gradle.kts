@@ -10,16 +10,16 @@ plugins {
 }
 
 // Dynamic versioning support for semantic-release
-val appVersion: String = findProperty("version") as String? ?: "1.0.0"
+val appVersion: String = (findProperty("version") as? String) ?: "1.0.0"
 
 // Calculate versionCode from semantic version supporting XXX.YYY.ZZZ format
 // (e.g., 1.2.3 -> 1002003, 12.34.567 -> 12034567)
 val appVersionCode: Int = appVersion.split(".")
     .map { it.toIntOrNull() ?: 0 }
     .let { parts ->
-        val major = parts.getOrElse(0) { 0 }
-        val minor = parts.getOrElse(1) { 0 }
-        val patch = parts.getOrElse(2) { 0 }
+        val major = parts.getOrNull(0) ?: 0
+        val minor = parts.getOrNull(1) ?: 0
+        val patch = parts.getOrNull(2) ?: 0
         major * 1000000 + minor * 1000 + patch
     }
 
