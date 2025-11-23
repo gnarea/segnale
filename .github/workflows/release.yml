@@ -41,6 +41,10 @@ jobs:
         uses: cycjimmy/semantic-release-action@ba330626c4750c19d8299de843f05c7aa5574f62 # v5.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          extra_plugins: |
+            @semantic-release/exec@7
+            @semantic-release/github@12
 
       - name: Upload APK artifacts
         if: success()
