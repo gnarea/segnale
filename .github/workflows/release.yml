@@ -43,13 +43,14 @@ jobs:
       - name: Validate Gradle wrapper
         run: ./gradlew --version --no-daemon
 
-      - name: Install Node.js dependencies
-        run: npm ci
-
       - name: Run semantic-release
         uses: cycjimmy/semantic-release-action@ba330626c4750c19d8299de843f05c7aa5574f62 # v5.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          extra_plugins: |
+            @semantic-release/exec@7
+            @semantic-release/github@12
 
       - name: Upload APK artifacts
         uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
