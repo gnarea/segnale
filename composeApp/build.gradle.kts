@@ -9,6 +9,17 @@ plugins {
     alias(libs.plugins.composeHotReload)
 }
 
+// Dynamic versioning support for semantic-release
+val appVersion: String = findProperty("version") as String? ?: "1.0.0"
+
+// Calculate versionCode from semantic version (e.g., 1.2.3 -> 10203)
+val appVersionCode: Int = appVersion.split(".")
+    .take(3)
+    .map { it.toIntOrNull() ?: 0 }
+    .let { (major, minor, patch) ->
+        major * 10000 + minor * 100 + patch
+    }
+
 kotlin {
     androidTarget {
         compilerOptions {
@@ -73,8 +84,8 @@ android {
         applicationId = "engineer.gus.segnale"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = appVersionCode
+        versionName = appVersion
     }
     packaging {
         resources {
@@ -112,7 +123,7 @@ compose.desktop {
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "engineer.gus.segnale"
-            packageVersion = "1.0.0"
+            packageVersion = appVersion
         }
     }
 }
