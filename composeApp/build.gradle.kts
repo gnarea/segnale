@@ -12,12 +12,13 @@ plugins {
 // Dynamic versioning support for semantic-release
 val appVersion: String = findProperty("version") as String? ?: "1.0.0"
 
-// Calculate versionCode from semantic version (e.g., 1.2.3 -> 10203)
+// Calculate versionCode from semantic version supporting XXX.YYY.ZZZ format
+// (e.g., 1.2.3 -> 1002003, 12.34.567 -> 12034567)
 val appVersionCode: Int = appVersion.split(".")
     .take(3)
     .map { it.toIntOrNull() ?: 0 }
     .let { (major, minor, patch) ->
-        major * 10000 + minor * 100 + patch
+        major * 1000000 + minor * 1000 + patch
     }
 
 kotlin {

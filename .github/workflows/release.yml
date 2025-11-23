@@ -38,14 +38,50 @@ jobs:
         run: ./gradlew --version --no-daemon
 
       - name: Run semantic-release
-        uses: cycjimmy/semantic-release-action@b12c8f6015dc215fe37bc154d4ad456dd3833c90 # v6.0.0
+        uses: cycjimmy/semantic-release-action@ba330626c4750c19d8299de843f05c7aa5574f62 # v5.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           extra_plugins: |
-            @semantic-release/changelog
-            @semantic-release/git
-            @semantic-release/exec
+            @semantic-release/changelog@6
+            @semantic-release/git@10
+            @semantic-release/exec@6
+          branches: |
+            [
+              "main"
+            ]
+          extends: |
+            {
+              "plugins": [
+                "@semantic-release/commit-analyzer",
+                "@semantic-release/release-notes-generator",
+                "@semantic-release/changelog",
+                [
+                  "@semantic-release/exec",
+                  {
+                    "prepareCmd": "./gradlew :composeApp:assembleRelease -Pversion=${nextRelease.version} --no-daemon --stacktrace"
+                  }
+                ],
+                [
+                  "@semantic-release/git",
+                  {
+                    "assets": ["CHANGELOG.md"],
+                    "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+                  }
+                ],
+                [
+                  "@semantic-release/github",
+                  {
+                    "assets": [
+                      {
+                        "path": "composeApp/build/outputs/apk/release/*.apk",
+                        "label": "Android APK (${nextRelease.gitTag})"
+                      }
+                    ]
+                  }
+                ]
+              ]
+            }
 
       - name: Upload APK artifacts
         if: success()
