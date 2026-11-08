@@ -18,7 +18,7 @@ junit = "4.13.2"
 kotest = "6.0.4"
 kotlin = "2.2.21"
 kotlinx-coroutines = "1.10.2"
-mockk = "1.14.6"
+mockk = "1.14.12"
 turbine = "1.2.1"
 
 [libraries]
